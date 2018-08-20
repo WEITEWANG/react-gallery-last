@@ -66,6 +66,27 @@ class ImgFigure extends React.Component{
     );
   }
 }
+// 定义ControllerUnits组件
+class ControllerUnits extends React.Component{
+  constructor(props){
+    super(props);
+    this.handleClick=this.handleClick.bind(this);
+  }
+  handleClick(e){
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.center();
+    }
+    e.stopPropagation();
+    e.preventDefault();
+  }
+  render(){
+    return (
+      <span className="controller-unit" onClick={this.handleClick}></span>
+    );
+  }
+}
 class AppComponent extends React.Component {
   constructor(props){
     super(props);
@@ -237,6 +258,7 @@ rerrange(centerIndex){
         }
       }
       imgFigures.push(<ImgFigure key={index} data={val} ref={'imgFigure'+index} arrange={this.state.imgsArrangeArr[index]} center={this.center(index)} inverse={this.inverse(index)}/>);
+      controllerUnits.push(<ControllerUnits key={index} arrange={this.state.imgsArrangeArr[index]} center={this.center(index)} inverse={this.inverse(index)}/>);
     });
  
     return (
