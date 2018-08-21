@@ -176,8 +176,8 @@ rerrange(centerIndex){
       // 布局上方（垂直方向图片位置信息）
       topImgSpliceIndex=Math.floor(Math.random()*(imgsArrangeArr.length-imgTopNum));
       imgsArrangeTopArr=imgsArrangeArr.splice(topImgSpliceIndex,imgTopNum);
-      imgsArrangeTopArr.forEach(index=>{
-        imgsArrangeTopArr[index]={
+      for(let i=0;i<imgsArrangeTopArr.length;i++){
+        imgsArrangeTopArr[i]={
           pos:{
             left:getRangeRandom(vPosRangeX[0],vPosRangeX[1]),
             top:getRangeRandom(vPosRangeTopY[0],vPosRangeTopY[1])
@@ -185,7 +185,8 @@ rerrange(centerIndex){
           rotate:get30DegRandom(),
           isCenter:false
         }
-      });
+      }
+      // console.log(imgsArrangeTopArr);
       // 布局两侧
       for(let i=0;i<imgsArrangeArr.length;i++){
         let hPosRangeLORX=null;
@@ -244,7 +245,9 @@ rerrange(centerIndex){
           this.Constant.hPosRange.topY[1]=stageHeight-halfImgHeight;
           // 计算上侧图片排布的取值范围
           this.Constant.vPosRange.x[0]=halfStageWidth-imgFigWidth;
-          this.Constant.vPosRange.x[1]=halfImgFigWidth;
+          // console.log(this.Constant.vPosRange.x[0]);
+          this.Constant.vPosRange.x[1]=halfStageWidth;
+          // console.log(this.Constant.vPosRange.x[1]);
           this.Constant.vPosRange.topY[0]=-halfImgHeight;
           this.Constant.vPosRange.topY[1]=halfStageHeight-halfImgHeight*3;
           this.rerrange(0);
